@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "../../../node_modules/@angular/core/types/core";
-import { inject } from "../../../node_modules/@angular/core/types/primitives-di";
+import { Injectable, inject } from "@angular/core";
 import { environment } from "../environment/environment";
 import { Social } from "../models/social.model";
 
@@ -9,7 +8,7 @@ import { Social } from "../models/social.model";
 })
 export class SocialService {
 
-  private http = inject(HttpClient);
+  private http: HttpClient = inject(HttpClient);
 
   getSocials() {
     return this.http.get<Social[]>(
