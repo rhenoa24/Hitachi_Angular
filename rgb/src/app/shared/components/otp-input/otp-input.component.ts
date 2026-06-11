@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-otp-input',
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './otp-input.component.html',
-  styleUrls: ['./otp-input.component.css']
+  styleUrls: ['./otp-input.component.css'],
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class OtpInputComponent {
   @Input() control!: FormControl<string>;

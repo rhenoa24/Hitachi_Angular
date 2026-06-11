@@ -47,11 +47,11 @@
 
         <div class="button-group">
 
-          <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
+          <button class="green" type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
             Enter
           </button>
 
-          <button type="button" (click)="closeOtp()">
+          <button class="red" type="button" (click)="closeOtp()">
             Close
           </button>
 

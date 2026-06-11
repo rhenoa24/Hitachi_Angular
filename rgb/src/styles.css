@@ -38,11 +38,15 @@ a {
 /* Common UI Elements */
 
 button {
-  /*background-color: transparent;*/
-  /*color: inherit;
-  border: none;*/
+  overflow: hidden;
+  border: none;
+  outline: none;
 }
 
-button i {
+  button i {
     font-size: 20pt;
-}
+  }
+
+  button:disabled {
+    opacity: 0.4
+  }

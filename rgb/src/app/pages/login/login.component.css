@@ -92,19 +92,7 @@ form {
 }
 
   .confirm-btn:disabled {
-    background-color: #DCDCDC;
-    color: #888888;
+    background-color: #A8A8A8;
+    color: black;
     box-shadow: none;
   }
-
-.otp-wrapper {
-  display: flex;
-  gap: 10px;
-}
-
-.otp-box {
-  width: 40px;
-  height: 50px;
-  text-align: center;
-  font-size: 24px;
-}
