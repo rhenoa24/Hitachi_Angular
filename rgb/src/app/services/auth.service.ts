@@ -45,4 +45,17 @@ export class AuthService {
     return localStorage.getItem('user') !== null;
   }
 
+  // -----------------------------
+  // Expose session from localStorage
+  // -----------------------------
+  getSession(): LoginResponse | null {
+    const data = localStorage.getItem('user');
+
+    if (!data) {
+      return null;
+    }
+
+    return JSON.parse(data);
+  }
+
 }

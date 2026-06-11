@@ -1,7 +1,7 @@
 export interface Social {
-  id: number;
   name: string;
-  icon: string;
-  description: string;
-  url: string;
+  history: string;
+  iconUrl: string;
+  imgUrl: string;
+  webUrl: string;
 }
