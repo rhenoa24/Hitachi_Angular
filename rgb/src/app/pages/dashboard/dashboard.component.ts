@@ -12,7 +12,7 @@ import { SocialCardComponent } from '../../shared/components/social-card/social-
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
-  imports: [LoadingComponent, SocialCardComponent]
+  imports: [LoadingComponent]
 })
 export class DashboardComponent implements OnInit {
 
@@ -64,6 +64,9 @@ export class DashboardComponent implements OnInit {
         // Stop loading indicator
         this.isLoading = false;
 
+        // Store in service
+        this.socialService.setCache(data);
+
         // Force UI refresh (only needed in special cases)
         this.cdr.detectChanges();
       },
@@ -97,6 +100,10 @@ export class DashboardComponent implements OnInit {
       this.isLoading = false
       this.router.navigate(['/login']);
     }, 3000);
+  }
+
+  openSocial(name: string): void {
+    this.router.navigate(['/social', name]);
   }
 
   ngOnDestroy() {

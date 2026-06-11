@@ -15,12 +15,41 @@ export class SocialService {
   private http = inject(HttpClient);
 
   // -----------------------------
-  // Fetch all social records
+  // Get all social records
   // -----------------------------
-  getSocials() {
+  socials: Social[] = [];
 
+  getSocials() {
     return this.http.get<Social[]>(
       `${environment.apiUrl}/socials`
     );
   }
+
+  // -----------------------------
+  // Cache
+  // -----------------------------
+  setCache(data: Social[]) {
+    this.socials = data;
+  }
+
+  getCache() {
+    return this.socials;
+  }
+
+  // -----------------------------
+  // Get single social by ID
+  // -----------------------------
+  getSocialByName(name: string) {
+    const cached = this.socials.find(x => x.name === name);
+
+    if (cached) {
+      return cached;
+    }
+
+    // fallback if user refreshes page or cache is empty
+    return this.http.get<Social>(
+      `${environment.apiUrl}/socials/${name}`
+    );
+  }
+
 }
