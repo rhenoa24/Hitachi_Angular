@@ -1,24 +1,32 @@
 import { Component, inject } from '@angular/core';
-import { LoginRequest } from '../../models/login-request.model';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../models/login-request.model';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
+  imports: [ReactiveFormsModule],
 })
 export class LoginComponent {
 
-  protected router: Router = inject(Router)
-  protected authService: AuthService = inject(AuthService)
+  // -----------------------------
+  // Dependency Injection
+  // -----------------------------
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
+  // -----------------------------
+  // UI State (multi-step login flow)
+  // -----------------------------
   protected step: 'username' | 'otp' = 'username';
-  protected username: string = ""
-  protected pin: string = ""
 
+  // -----------------------------
+  // Reactive Form
+  // -----------------------------
   protected loginForm = new FormGroup({
     userName: new FormControl<string>('', {
       nonNullable: true,
@@ -28,6 +36,7 @@ export class LoginComponent {
         Validators.pattern(/^[a-zA-Z0-9]+$/)
       ]
     }),
+
     otp: new FormControl<string>('', {
       nonNullable: true,
       validators: [
@@ -35,35 +44,50 @@ export class LoginComponent {
         Validators.pattern(/^[0-9]{6}$/)
       ]
     }),
-  })
+  });
 
-  submitUsername() {
-    // simulate API step 1
+  // -----------------------------
+  // Step 1: Username submission
+  // -----------------------------
+  submitUsername(): void {
+
+    // Currently only simulating step progression
+    // Ideally: call API to validate username first
     this.step = 'otp';
   }
 
-  submitOtp() {
+  // -----------------------------
+  // Step 2: OTP submission
+  // -----------------------------
+  submitOtp(): void {
 
+    // Build payload safely from form values
     const payload: LoginRequest = {
-      userName: this.loginForm.value.userName ?? '',
-      otp: this.loginForm.value.otp ?? ''
+      userName: this.loginForm.controls.userName.value,
+      otp: this.loginForm.controls.otp.value
     };
 
-    // ALWAYS go to loading page first
-    this.router.navigate(['/loading']);
-
+    // Trigger login request
     this.authService.login(payload).subscribe({
       next: (res) => {
+
+        // Persist session data
         localStorage.setItem('user', JSON.stringify(res));
 
+        // Reset loading state (depends on your AuthService design)
         this.authService.loading.set(false);
 
+        // Navigate to dashboard after success
         this.router.navigate(['/dashboard']);
       },
-      error: () => {
+
+      error: (err) => {
+
+        console.error('Login failed:', err);
+
+        // Reset loading state
         this.authService.loading.set(false);
       }
     });
   }
-
 }

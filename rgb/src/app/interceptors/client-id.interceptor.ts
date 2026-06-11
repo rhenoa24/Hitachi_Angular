@@ -1,21 +1,23 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
-import { Injectable } from "../../../node_modules/@angular/core/types/core";
-import { Observable } from "../../../node_modules/rxjs/dist/types/index";
+import { HttpInterceptorFn } from '@angular/common/http';
 
-@Injectable()
-export class ClientIdInterceptor implements HttpInterceptor {
+/**
+ * Functional HTTP interceptor
+ * -------------------------------------------------
+ * Automatically attaches a CLIENT_ID header to every outgoing HTTP request.
+ *
+ * This runs globally once registered in app.config.ts.
+ * It replaces the older class-based HttpInterceptor approach.
+ */
 
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+export const clientIdInterceptor: HttpInterceptorFn = (req, next) => {
 
-    const clonedRequest = request.clone({
-      setHeaders: {
-        CLIENT_ID: 'rgbexam'
-      }
-    });
+  // HttpRequest is immutable → must clone before modifying
+  const cloned = req.clone({
+    setHeaders: {
+      CLIENT_ID: 'rgbexam' // custom header required by backend
+    }
+  });
 
-    return next.handle(clonedRequest);
-  }
-}
+  // Pass modified request to next interceptor or HTTP handler
+  return next(cloned);
+};

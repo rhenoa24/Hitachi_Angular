@@ -1,44 +1,77 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { SocialService } from '../../services/social.service';
+import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Social } from '../../models/social.model';
+
+import { SocialService } from '../../services/social.service';
 import { AuthService } from '../../services/auth.service';
+import { Social } from '../../models/social.model';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
+  imports: []
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
-  private socialService: SocialService = inject(SocialService)
-  private router: Router = inject(Router)
-  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef)
-  private authService: AuthService = inject(AuthService)
+  // -----------------------------
+  // Dependency Injection (modern inject API)
+  // -----------------------------
+  private socialService = inject(SocialService);
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
-  protected socials: Social[] = []
-  protected isLoading: boolean = true;
+  // Used to manually trigger UI update when Angular doesn't auto-detect changes
+  // (usually not needed unless using OnPush or external async patterns)
+  private cdr = inject(ChangeDetectorRef);
 
-  ngOnInit() {
+  // -----------------------------
+  // Component State
+  // -----------------------------
+  protected socials: Social[] = [];     // Stores API response
+  protected isLoading: boolean = true;   // Loading state for UI
+
+  // -----------------------------
+  // Lifecycle Hook
+  // -----------------------------
+  ngOnInit(): void {
+
     this.socialService.getSocials().subscribe({
-      next: (data) => {
+      next: (data: Social[]) => {
+
+        // Assign fetched data to state
         this.socials = data;
+
+        // Stop loading indicator
         this.isLoading = false;
+
+        // Force UI refresh (only needed in special cases)
         this.cdr.detectChanges();
       },
-      error: () => {
+
+      error: (err) => {
+
+        // Stop loading even if request fails
         this.isLoading = false;
+
+        // Optional: log error for debugging
+        console.error('Failed to load socials:', err);
+
         this.cdr.detectChanges();
       }
     });
   }
 
-  logout() {
+  // -----------------------------
+  // Actions
+  // -----------------------------
+  logout(): void {
+
+    // Clear authentication/session state
     this.authService.logout();
+
+    // Redirect to login after delay (likely for UX feedback)
     setTimeout(() => {
       this.router.navigate(['/login']);
     }, 3000);
   }
-
 }
