@@ -54,6 +54,8 @@ button {
     font-size: 20pt;
   }
 
+  .muted,
   button:disabled {
     opacity: 0.4
   }
+
