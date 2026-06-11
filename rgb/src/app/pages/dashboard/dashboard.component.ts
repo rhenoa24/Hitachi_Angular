@@ -40,6 +40,8 @@ export class DashboardComponent implements OnInit {
   protected userName: string = '';
   protected profilePicture: string = '';
 
+  protected showLogoutUI: boolean = false;
+
   // -----------------------------
   // Lifecycle Hook
   // -----------------------------
@@ -90,6 +92,10 @@ export class DashboardComponent implements OnInit {
      this.router.navigate(['/social', social.name.toLowerCase()], {
       state: { social }
     });
+  }
+
+  showLogout() {
+    this.showLogoutUI = !this.showLogoutUI;
   }
 
   ngOnDestroy() {

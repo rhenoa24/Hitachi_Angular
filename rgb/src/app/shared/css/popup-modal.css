@@ -40,9 +40,13 @@
         border: 0;
       }
 
-      .popup-modal .content .button-group button:first-child {
+        .popup-modal .content .button-group button:first-child {
           border: none;
-      }
+        }
+
+        .popup-modal .content .button-group button:disabled {
+          color: #A8A8A8;
+        }
 
       .popup-modal .content .button-group .green {
         color: #4EAF51;
@@ -50,6 +54,10 @@
 
       .popup-modal .content .button-group .red {
         color: #F34639;
+      }
+
+      .popup-modal .content .button-group .blue {
+        color: #2196F3;
       }
 
     .popup-modal .content .modal-form {
@@ -62,4 +70,36 @@
       .popup-modal .content .modal-form .title {
         font-weight: 600;
         font-size: 14pt;
+      }
+
+
+/* Logout */
+.bottom.popup-modal {
+  align-items: flex-end;
+}
+
+  .bottom.popup-modal .content {
+    background-color: transparent;
+    width: 100%;
+  }
+
+    .bottom.popup-modal .content .button-group {
+      flex-direction: column;
+      border: none;
+      gap: 10px;
+      width: 50%;
+      justify-self: center;
+      padding-block: 30px;
+    }
+
+      .bottom.popup-modal .content .button-group button {
+        border: none !important;
+        padding: 18px;
+        font-size: 14pt;
+        border-radius: 10px;
+        background-color: white;
+      }
+
+      .bottom.popup-modal .content .button-group .red {
+        background-color: #EEEEEE;
       }
