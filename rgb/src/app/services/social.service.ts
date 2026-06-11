@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-
 import { environment } from '../environment/environment';
 import { Social } from '../models/social.model';
+import { Observable, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,30 +17,18 @@ export class SocialService {
   // -----------------------------
   // Get all social records
   // -----------------------------
-  getSocials() {
-    return this.http.get<Social[]>(
-      `${environment.apiUrl}/socials`
-    );
+  getSocials(): Observable<Social[]> {
+    return this.socials$;
   }
 
   // -----------------------------
   // Caching
   // -----------------------------
-  socials: Social[] = [];
 
-  cacheLoaded = false;
-
-  setCache(data: Social[]) {
-    this.socials = data;
-    this.cacheLoaded = true;
-  }
-
-  getCache() {
-    return this.socials;
-  }
-
-  isCacheValid() {
-    return this.cacheLoaded && this.socials.length > 0;
-  }
+  private socials$ = this.http.get<Social[]>(
+    `${environment.apiUrl}/socials`
+  ).pipe(
+    shareReplay(1)  // caches the result, replays to any new subscriber
+  );
 
 }

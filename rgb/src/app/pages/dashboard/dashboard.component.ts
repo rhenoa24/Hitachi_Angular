@@ -44,50 +44,28 @@ export class DashboardComponent implements OnInit {
   // Lifecycle Hook
   // -----------------------------
   ngOnInit(): void {
-    this.loadingText = "Fetching Data";
+    this.loadingText = 'Fetching Data';
 
     const session = this.authService.getSession();
-
     if (session) {
       this.userId = session.userId;
       this.userName = session.userName;
       this.profilePicture = session.profilePicture;
     }
 
-    // -----------------------------
-    // 1. USE CACHE FIRST
-    // -----------------------------
-    if (this.socialService.isCacheValid()) {
-
-      this.socials = this.socialService.getCache();
-      this.isLoading = false;
-      return;
-    }
-
-    // -----------------------------
-    // 2. FETCH ONLY IF NO CACHE
-    // -----------------------------
     this.dashboardSub = this.socialService.getSocials().subscribe({
       next: (data: Social[]) => {
-
         this.socials = data;
-
-        // store cache
-        this.socialService.setCache(data);
-
         this.isLoading = false;
         this.cdr.detectChanges();
       },
-
       error: (err) => {
-
         this.isLoading = false;
-
         console.error('Failed to load socials:', err);
-
         this.cdr.detectChanges();
       }
     });
+
   }
 
   // -----------------------------
