@@ -32,25 +32,51 @@ form {
       transform: translate(-25%, 25%);
     }
 
-.form-control {
+.login-form {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 24px;
+  width: 50%;
 }
 
+  .login-form * {
+      flex-grow: 1;
+  }
+
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .form-control input {
-    width: 612px;
     border-radius: 5px;
     outline: none;
     border: 1px solid #9B9B9B;
-    padding: 30px;
+    padding: 20px;
   }
 
-  .form-control input.ng-invalid.ng-touched {
+    .form-control input::placeholder {
+       text-align: center;
+    }
+
+    .form-control input.ng-invalid.ng-touched {
       border-color: red;
-  }
+    }
 
-  .form-control .error {
-    text-align: center;
-    border-color: red;
-  }
+    .form-control .error {
+      text-align: center;
+      color: red;
+    }
+
+.login-form button {
+  padding: 18px;
+  font-size: 14pt;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 5px 10px #00000030;
+}
+
+.confirm-btn:not(:disabled) {
+   background-color: #67ad5b
+}
