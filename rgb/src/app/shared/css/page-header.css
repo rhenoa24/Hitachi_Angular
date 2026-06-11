@@ -1,0 +1,32 @@
+.page-header {
+  display: flex;
+  padding-inline: 10px;
+  gap: 10px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+  .page-header button svg {
+    width: 25px;
+    height: 25px;
+  }
+
+.YouTube .page-header,
+.YouTube .page-content button {
+  background-color: #F44336;
+  color: white;
+}
+
+.Spotify .page-header,
+.Spotify .page-content button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.Facebook .page-header,
+.Facebook .page-content button {
+  background-color: #2196F3;
+  color: white;
+}
