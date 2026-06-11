@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./others.component.css'],
   imports: [CommonModule]
 })
-export class OthersComponent implements OnInit, OnDestroy {
+export class OthersComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('carouselViewport') carouselRef!: ElementRef<HTMLElement>;
 
-  private router = inject(Router)
+  private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
-
 
   brands = [
     { name: 'Samsung', logoUrl: 'samsung.png', url: 'https://www.samsung.com' },
@@ -20,33 +20,75 @@ export class OthersComponent implements OnInit, OnDestroy {
     { name: 'Windows', logoUrl: 'windows.png', url: 'https://www.microsoft.com' },
   ];
 
-
   currentIndex = 0;
-  private autoplayInterval: ReturnType<typeof setInterval> | null = null;  // :point_left: typed properly
+  // virtualIndex: 0 = clone of last, 1..n = real items, n+1 = clone of first
+  virtualIndex = 1;
+  animating = false;
+  slideW = 0;
 
-  ngOnInit() {
-    this.startAutoplay();  // :point_left: kicks off immediately on load
+  private autoplayInterval: ReturnType<typeof setInterval> | null = null;
+
+  get extendedBrands() {
+    return [this.brands[this.brands.length - 1], ...this.brands, this.brands[0]];
   }
 
-  ngOnDestroy() {
-    this.stopAutoplay();  // :point_left: prevents memory leak when leaving the page
+  get trackTransform(): string {
+    if (!this.slideW) return '';
+    const vw = this.carouselRef.nativeElement.offsetWidth;
+    const slotW = this.slideW + 16; // 8px margin each side
+    const offset = vw / 2 - (this.virtualIndex + 0.5) * slotW;
+    return `translateX(${offset}px)`;
   }
 
   get currentBrand() {
     return this.brands[this.currentIndex];
   }
 
+  ngOnInit() {
+    this.startAutoplay();
+  }
+
+  ngAfterViewInit() {
+    this.slideW = Math.round(this.carouselRef.nativeElement.offsetWidth * 0.78);
+    this.cdr.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoplay();
+  }
+
+  onTransitionEnd(event: TransitionEvent) {
+    if (event.propertyName !== 'transform') return;
+    const n = this.brands.length;
+    this.animating = false;
+    if (this.virtualIndex <= 0) {
+      this.virtualIndex = n;       // jump to real last
+      this.currentIndex = n - 1;
+    } else if (this.virtualIndex >= n + 1) {
+      this.virtualIndex = 1;       // jump to real first
+      this.currentIndex = 0;
+    } else {
+      this.currentIndex = this.virtualIndex - 1;
+    }
+  }
+
   prev() {
-    this.currentIndex = (this.currentIndex - 1 + this.brands.length) % this.brands.length;
+    if (this.animating) return;
+    this.animating = true;
+    this.virtualIndex--;
     this.resetAutoplay();
   }
 
   next() {
-    this.currentIndex = (this.currentIndex + 1) % this.brands.length;
+    if (this.animating) return;
+    this.animating = true;
+    this.virtualIndex++;
     this.resetAutoplay();
   }
 
   goTo(index: number) {
+    if (this.animating) return;
+    this.virtualIndex = index + 1;
     this.currentIndex = index;
     this.resetAutoplay();
   }
@@ -62,19 +104,19 @@ export class OthersComponent implements OnInit, OnDestroy {
   private startAutoplay() {
     this.autoplayInterval = setInterval(() => {
       this.next();
-      this.cdr.markForCheck(); // 👈 tells Angular to re-check this component
+      this.cdr.markForCheck();
     }, 3000);
   }
 
   private stopAutoplay() {
     if (this.autoplayInterval) {
       clearInterval(this.autoplayInterval);
-      this.autoplayInterval = null;  // :point_left: always null it out after clearing
+      this.autoplayInterval = null;
     }
   }
 
   private resetAutoplay() {
     this.stopAutoplay();
-    this.startAutoplay();  // :point_left: restart the 3s timer fresh after manual interaction
+    this.startAutoplay();
   }
 }

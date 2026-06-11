@@ -4,8 +4,10 @@
   <header class="page-header">
 
     <button (click)="goBack()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
       </svg>
     </button>
 
@@ -20,15 +22,16 @@
     <!-- Carousel -->
     <div class="carousel">
 
-      <!-- Prev Arrow -->
-      <button class="arrow left" (click)="prev()">&#8249;</button>
-
-      <!-- Slide -->
-      <div class="slide">
-        <img [src]="currentBrand.logoUrl" [alt]="currentBrand.name" />
+      <div class="carousel-viewport" #carouselViewport>
+        <div class="carousel-track" [style.transform]="trackTransform"
+          [style.transition]="animating ? 'transform 0.4s ease' : 'none'" (transitionend)="onTransitionEnd($event)">
+          <div class="slide" *ngFor="let brand of extendedBrands" [style.width.px]="slideW">
+            <img [src]="brand.logoUrl" [alt]="brand.name" />
+          </div>
+        </div>
       </div>
 
-      <!-- Next Arrow -->
+      <button class="arrow left" (click)="prev()">&#8249;</button>
       <button class="arrow right" (click)="next()">&#8250;</button>
 
     </div>
@@ -43,10 +46,8 @@
 
     <!-- Dot indicators -->
     <div class="dots">
-      <span *ngFor="let brand of brands; let i = index"
-            class="dot"
-            [class.active]="i === currentIndex"
-            (click)="goTo(i)">
+      <span *ngFor="let brand of brands; let i = index" class="dot" [class.active]="i === currentIndex"
+        (click)="goTo(i)">
       </span>
     </div>
 
