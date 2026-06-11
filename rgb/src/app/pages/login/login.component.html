@@ -17,9 +17,12 @@
       <div class="form-control">
         <input type="text" formControlName="userName" placeholder="Username" />
 
-        @if (showError('userName')) {
-        <span class="error">{{ getErrorMessage('userName') }}</span>
-        }
+        <div class="error">
+          @if (showError('userName')) {
+          {{ getErrorMessage('userName') }}
+          }
+        </div>
+
       </div>
 
       <button class="confirm-btn" type="button" (click)="submitUsername()" [disabled]="loginForm.get('userName')?.invalid">
