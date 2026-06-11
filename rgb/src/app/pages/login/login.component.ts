@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -22,6 +22,7 @@ export class LoginComponent {
   // -----------------------------
   private router = inject(Router);
   private authService = inject(AuthService);
+  private cdr = inject(ChangeDetectorRef);
 
   // -----------------------------
   // UI State (multi-step login flow)
@@ -77,7 +78,6 @@ export class LoginComponent {
     // Trigger login request
     this.authService.login(payload).subscribe({
       next: (res) => {
-
         // Persist session data
         localStorage.setItem('user', JSON.stringify(res));
 
@@ -85,14 +85,23 @@ export class LoginComponent {
 
         // Navigate to dashboard after success
         this.router.navigate(['/dashboard']);
+
+        this.cdr.detectChanges();
       },
-
       error: (err) => {
-
         this.isLoading = false;
+        this.step = 'username';
+        this.resetFields();
 
         console.error('Login failed:', err);
+
+        this.cdr.detectChanges();
       }
     });
+
+  }
+
+  resetFields() {
+    this.loginForm.reset()
   }
 }
