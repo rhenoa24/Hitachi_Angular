@@ -40,6 +40,10 @@
         border: 0;
       }
 
+        .popup-modal .content .button-group button:hover:not(:disabled) {
+          background-color: #B7C0C9;
+        }
+
         .popup-modal .content .button-group button:first-child {
           border: none;
         }

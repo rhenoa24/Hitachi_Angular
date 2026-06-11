@@ -13,6 +13,10 @@
     height: 25px;
   }
 
+.page-content {
+  white-space: pre-wrap;
+}
+
 .page-content button.btn {
   padding: 18px;
   font-size: 12pt;
@@ -28,11 +32,19 @@
   color: white;
 }
 
+  .YouTube .page-content button:hover {
+    background-color: #D32F2F;
+  }
+
 .Spotify .page-header,
 .Spotify .page-content button {
   background-color: #4CAF50;
   color: white;
 }
+
+  .Spotify .page-content button:hover {
+    background-color: #388E3C;
+  }
 
 .Facebook .page-header,
 .Facebook .page-content button {
@@ -40,8 +52,16 @@
   color: white;
 }
 
+  .Facebook .page-content button:hover {
+    background-color: #1976D2;
+  }
+
 .Others .page-header,
 .Others .page-content button {
   background-color: #FFC107;
   color: white;
 }
+
+  .Others .page-content button:hover {
+    background-color: #FFA000;
+  }

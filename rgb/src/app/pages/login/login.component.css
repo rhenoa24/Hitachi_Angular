@@ -96,3 +96,7 @@ form {
     color: black;
     box-shadow: none;
   }
+
+  .confirm-btn:hover:not(:disabled) {
+    background-color: #589A4D;
+  }

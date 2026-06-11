@@ -34,22 +34,26 @@
   gap: clamp(16px, 10vw, 180px);
 }
 
-  .icon-grid img,
-  .icon-grid .others {
+  .icon-grid > * {
     width: 100%;
     max-width: 246px;
     border-radius: 20px;
     cursor: pointer;
+    transition: all 0.2s ease;
   }
 
-  .icon-grid .others {
-    background: #FFC107;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 25px;
-  }
+    .icon-grid > *:hover {
+      transform: scale(1.1);
+    }
+
+    .icon-grid .others {
+      background: #FFC107;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 25px;
+    }
 
     .icon-grid .others svg {
       width: 100%;
