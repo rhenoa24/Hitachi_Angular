@@ -1,1 +1,31 @@
-<p>login works!</p>
+<h1>Login Page</h1>
+
+<form [formGroup]="loginForm">
+
+  <!-- STEP 1 -->
+  @if (step === 'username'){
+  <div>
+    <h3>Enter Username</h3>
+
+    <input type="text" formControlName="userName" placeholder="Username" />
+
+    <button type="button" (click)="submitUsername()" [disabled]="loginForm.get('userName')?.invalid">
+      Login
+    </button>
+  </div>
+  }
+
+  <!-- STEP 2 -->
+  @if (step === 'otp'){
+  <div>
+    <h3>Enter OTP</h3>
+
+    <input type="text" formControlName="otp" placeholder="OTP" />
+
+    <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
+      Enter
+    </button>
+  </div>
+  }
+
+</form>
