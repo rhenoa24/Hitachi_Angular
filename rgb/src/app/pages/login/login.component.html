@@ -10,7 +10,14 @@
   <div>
     <h3>Enter Username</h3>
 
-    <input type="text" formControlName="userName" placeholder="Username" />
+    <div>
+      <input type="text" formControlName="userName" placeholder="Username" />
+
+      @if (showError('userName')) {
+      <span>{{ getErrorMessage('userName') }}</span>
+      }
+
+    </div>
 
     <button type="button" (click)="submitUsername()" [disabled]="loginForm.get('userName')?.invalid">
       Login
@@ -23,7 +30,7 @@
   <div>
     <h3>Enter OTP</h3>
 
-    <input type="text" formControlName="otp" placeholder="OTP" />
+    <input type="number" formControlName="otp" placeholder="OTP" />
 
     <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
       Enter

@@ -53,6 +53,44 @@ export class LoginComponent {
     }),
   });
 
+  showError(controlName: string): boolean {
+    const control = this.loginForm.get(controlName);
+
+    if (!control) {
+      return false;
+    }
+
+    const hasInteracted = control.dirty || control.touched;
+
+    if (control && control.invalid && hasInteracted) {
+      return true
+    }
+
+    return false
+  }
+
+  getErrorMessage(controlName: string): string | null {
+
+    const control = this.loginForm.get(controlName);
+
+    if (!control || !control.errors) return null;
+
+    if (control.hasError('required')) {
+      return 'Please enter your username';
+    }
+
+    if (control.hasError('maxlength')) {
+      const max = control.errors['maxlength']?.requiredLength;
+      return `Must not exceed ${max} characters`;
+    }
+
+    if (control.hasError('pattern')) {
+      return 'Values must be alphanumeric';
+    }
+
+    return null;
+  }
+
   // -----------------------------
   // Step 1: Username submission
   // -----------------------------
