@@ -1,0 +1,15 @@
+:host {
+  position: absolute;
+  right: 0;
+  padding: 20px;
+  z-index: 1;
+}
+
+div {
+    opacity: 0;
+    cursor: pointer;
+}
+
+div:hover {
+    opacity: 1
+}

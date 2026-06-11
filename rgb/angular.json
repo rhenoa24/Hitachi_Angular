@@ -37,7 +37,8 @@
             "styles": [
               "src/styles.css",
               "src/app/shared/css/popup-modal.css",
-              "src/app/shared/css/page-header.css"
+              "src/app/shared/css/page-header.css",
+              "src/app/shared/css/theme-special.css"
             ]
           },
           "configurations": {
