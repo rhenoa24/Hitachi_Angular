@@ -158,26 +158,12 @@ export class LoginComponent {
     otp.reset();
   }
 
-  resetFields() {
-    this.loginForm.reset()
+  closeError() {
+    this.loginFailed = false;
   }
 
-  onOtpInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-
-    // keep digits only
-    let value = input.value.replace(/[^0-9]/g, '');
-
-    // limit to 6
-    if (value.length > 6) {
-      value = value.substring(0, 6);
-    }
-
-    // update form control without re-trigger loops
-    this.loginForm.get('otp')?.setValue(value, { emitEvent: false });
-
-    // also reflect trimmed value in UI
-    input.value = value;
+  resetFields() {
+    this.loginForm.reset()
   }
 
   ngOnDestroy() {
