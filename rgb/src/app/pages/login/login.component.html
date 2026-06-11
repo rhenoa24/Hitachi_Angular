@@ -15,7 +15,7 @@
 
     <div class="login-form">
       <div class="form-control">
-        <input type="text" formControlName="userName" placeholder="Username" />
+        <input type="text" formControlName="userName" placeholder="Username" (keydown.enter)="submitUsername()" />
 
         <div class="error">
           @if (showError('userName')) {
@@ -41,7 +41,8 @@
           <div class="title">Verify It's You</div>
           <span>Please enter your 6 digit PIN</span>
 
-          <app-otp-input [control]="loginForm.controls.otp" />
+          <app-otp-input [control]="loginForm.controls.otp"
+                         (keydown.enter)="submitOtp()"/>
 
         </div>
 

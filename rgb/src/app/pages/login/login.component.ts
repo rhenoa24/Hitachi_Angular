@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -26,7 +26,9 @@ export class LoginComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
+
   private loginSub?: Subscription;
+  @ViewChild(OtpInputComponent) otpInput!: OtpInputComponent;
 
   // -----------------------------
   // UI State (multi-step login flow)
@@ -101,8 +103,13 @@ export class LoginComponent {
   // Step 1: Username submission
   // -----------------------------
   submitUsername(): void {
+    if (this.loginForm.get('userName')?.invalid) {
+      return
+    }
     // Currently only simulating step progression
     this.step = 'otp';
+    this.otpInput.focusInput();
+
     this.loginFailed = false;
   }
 
@@ -110,6 +117,9 @@ export class LoginComponent {
   // Step 2: OTP submission
   // -----------------------------
   submitOtp(): void {
+    if (this.loginForm.get('otp')?.invalid) {
+      return
+    }
 
     // Build payload safely from form values
     const payload: LoginRequest = {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class OtpInputComponent {
   @Input() control!: FormControl<string>;
+  @ViewChild('hiddenInput') hiddenInput!: ElementRef<HTMLInputElement>;
 
   readonly length = 6;
   readonly digits = Array(this.length).fill(null);
@@ -17,6 +18,13 @@ export class OtpInputComponent {
 
   get value(): string {
     return this.control.value ?? '';
+  }
+
+  focusInput(): void {
+    // wait for view init safety
+    setTimeout(() => {
+      this.hiddenInput?.nativeElement.focus();
+    });
   }
 
   onInput(event: Event): void {
@@ -27,4 +35,7 @@ export class OtpInputComponent {
     this.control.setValue(cleaned);
     this.control.markAsTouched();
   }
+
+
+
 }
