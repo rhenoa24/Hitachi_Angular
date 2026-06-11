@@ -88,7 +88,6 @@ form {
 .confirm-btn {
   background-color: #67ad5b;
   color: white;
-  box-shadow: 0px 5px 10px #00000030;
 }
 
   .confirm-btn:disabled {

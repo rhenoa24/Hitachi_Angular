@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
 })
 export class OthersComponent implements OnInit, OnDestroy {
 
-  protected router = inject(Router)
-  
+  private router = inject(Router)
+  private cdr = inject(ChangeDetectorRef);
+
+
   brands = [
     { name: 'Samsung', logoUrl: 'samsung.png', url: 'https://www.samsung.com' },
     { name: 'Apple', logoUrl: 'apple.png', url: 'https://www.apple.com' },
@@ -59,8 +61,9 @@ export class OthersComponent implements OnInit, OnDestroy {
 
   private startAutoplay() {
     this.autoplayInterval = setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.brands.length;
-    }, 3000);  // :point_left: advances every 3 seconds
+      this.next();
+      this.cdr.markForCheck(); // 👈 tells Angular to re-check this component
+    }, 3000);
   }
 
   private stopAutoplay() {

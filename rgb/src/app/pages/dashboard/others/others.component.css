@@ -51,28 +51,14 @@
   height: 36px;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-  .arrow:hover {
-    background: #f5f5f5;
-  }
-
 .brand-name {
   font-size: 20px;
   font-weight: 500;
-}
-
-.page-content button.visit-btn {
-  padding: 18px;
-  font-size: 12pt;
-  border-radius: 10px;
-  border: none;
-  font-weight: 600;
-  width: 50%;
 }
 
 .dots {

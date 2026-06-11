@@ -37,18 +37,18 @@
     <h2 class="brand-name">{{ currentBrand.name }}</h2>
 
     <!-- Visit button -->
-    <button class="visit-btn" (click)="visitWebsite()">
+    <button class="btn" (click)="visitWebsite()">
       Visit {{ currentBrand.name }} Website
     </button>
 
     <!-- Dot indicators -->
-    <!--<div class="dots">
+    <div class="dots">
       <span *ngFor="let brand of brands; let i = index"
             class="dot"
             [class.active]="i === currentIndex"
             (click)="goTo(i)">
       </span>
-    </div>-->
+    </div>
 
   </main>
 
