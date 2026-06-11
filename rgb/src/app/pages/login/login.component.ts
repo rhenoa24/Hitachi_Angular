@@ -4,12 +4,16 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request.model';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    LoadingComponent
+  ],
 })
 export class LoginComponent {
 
@@ -23,6 +27,8 @@ export class LoginComponent {
   // UI State (multi-step login flow)
   // -----------------------------
   protected step: 'username' | 'otp' = 'username';
+  protected isLoading: boolean = false;
+  protected loadingText: string = '';
 
   // -----------------------------
   // Reactive Form
@@ -50,9 +56,7 @@ export class LoginComponent {
   // Step 1: Username submission
   // -----------------------------
   submitUsername(): void {
-
     // Currently only simulating step progression
-    // Ideally: call API to validate username first
     this.step = 'otp';
   }
 
@@ -67,6 +71,9 @@ export class LoginComponent {
       otp: this.loginForm.controls.otp.value
     };
 
+    this.isLoading = true;
+    this.loadingText = "Logging In"
+
     // Trigger login request
     this.authService.login(payload).subscribe({
       next: (res) => {
@@ -74,8 +81,7 @@ export class LoginComponent {
         // Persist session data
         localStorage.setItem('user', JSON.stringify(res));
 
-        // Reset loading state (depends on your AuthService design)
-        this.authService.loading.set(false);
+        this.isLoading = false;
 
         // Navigate to dashboard after success
         this.router.navigate(['/dashboard']);
@@ -83,10 +89,9 @@ export class LoginComponent {
 
       error: (err) => {
 
-        console.error('Login failed:', err);
+        this.isLoading = false;
 
-        // Reset loading state
-        this.authService.loading.set(false);
+        console.error('Login failed:', err);
       }
     });
   }

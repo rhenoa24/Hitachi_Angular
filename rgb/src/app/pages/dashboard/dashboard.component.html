@@ -1,5 +1,5 @@
 @if (isLoading) {
-<div>Loading...</div>
+<app-loading [loadingText]="loadingText"></app-loading>
 }
 @else if (socials.length === 0) {
 <div>No data available...</div>

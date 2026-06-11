@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { SocialService } from '../../services/social.service';
 import { AuthService } from '../../services/auth.service';
 import { Social } from '../../models/social.model';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
-  imports: []
+  imports: [LoadingComponent]
 })
 export class DashboardComponent implements OnInit {
 
@@ -29,11 +30,14 @@ export class DashboardComponent implements OnInit {
   // -----------------------------
   protected socials: Social[] = [];     // Stores API response
   protected isLoading: boolean = true;   // Loading state for UI
+  protected loadingText: string = '';
 
   // -----------------------------
   // Lifecycle Hook
   // -----------------------------
   ngOnInit(): void {
+
+    this.loadingText = "Fetching Data"
 
     this.socialService.getSocials().subscribe({
       next: (data: Social[]) => {
@@ -66,11 +70,15 @@ export class DashboardComponent implements OnInit {
   // -----------------------------
   logout(): void {
 
+    this.isLoading = true;
+    this.loadingText = "Logging Out"
+
     // Clear authentication/session state
     this.authService.logout();
 
     // Redirect to login after delay (likely for UX feedback)
     setTimeout(() => {
+      this.isLoading = false
       this.router.navigate(['/login']);
     }, 3000);
   }

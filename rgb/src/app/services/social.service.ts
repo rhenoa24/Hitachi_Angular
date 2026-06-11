@@ -15,15 +15,6 @@ export class SocialService {
   private http = inject(HttpClient);
 
   // -----------------------------
-  // API Headers (centralized idea)
-  // -----------------------------
-  // NOTE:
-  // If multiple services use CLIENT_ID, move this to an HttpInterceptor later.
-  private readonly headers = {
-    CLIENT_ID: 'rgbexam'
-  };
-
-  // -----------------------------
   // Fetch all social records
   // -----------------------------
   getSocials() {

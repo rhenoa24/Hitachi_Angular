@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
@@ -8,6 +7,5 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './loading.component.css',
 })
 export class LoadingComponent {
-  // inject service so template can react to signals
-  protected authService: AuthService = inject(AuthService);
+  @Input() loadingText: string = ''
 }

@@ -1,3 +1,6 @@
+@if (isLoading){
+<app-loading [loadingText]="loadingText" ></app-loading>
+} @else{
 <h1>Login Page</h1>
 
 <form [formGroup]="loginForm">
@@ -29,3 +32,4 @@
   }
 
 </form>
+}
