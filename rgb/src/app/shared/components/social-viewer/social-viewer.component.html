@@ -1,6 +1,6 @@
-<div class="social-card" [class]="social.name">
+<div class="viewer-container"  [class]="social.name">
 
-  <header class="card-header">
+  <header class="viewer-header">
 
     <button (click)="goBack()">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -12,16 +12,9 @@
 
   </header>
 
-  <main class="card-content">
-
-    <img [src]="social.imgUrl" [alt]="social.name" />
-
-    <p>{{ social.history }}</p>
-
-    <button (click)="openViewer()">
-      Visit {{ social.name }}
-    </button>
-
-  </main>
-
+  <iframe [src]="embedUrl"
+          class="viewer-frame"
+          frameborder="0"
+          allowfullscreen>
+  </iframe>
 </div>

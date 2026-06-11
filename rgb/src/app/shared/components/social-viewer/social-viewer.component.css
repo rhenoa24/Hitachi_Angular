@@ -1,0 +1,45 @@
+.viewer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.viewer-header {
+  display: flex;
+  padding-inline: 10px;
+  gap: 10px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+  .viewer-header button svg {
+    width: 25px;
+    height: 25px;
+  }
+
+.viewer-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+
+.YouTube .viewer-header,
+.YouTube .viewer-content button {
+  background-color: #F44336;
+  color: white;
+}
+
+.Spotify .viewer-header,
+.Spotify .viewer-content button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.Facebook .viewer-header,
+.Facebook .viewer-content button {
+  background-color: #2196F3;
+  color: white;
+}

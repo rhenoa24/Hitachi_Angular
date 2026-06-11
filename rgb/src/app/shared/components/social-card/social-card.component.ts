@@ -10,13 +10,26 @@ import { Router } from '@angular/router';
 export class SocialCardComponent {
   router = inject(Router);
 
+  protected isFrameVisible: boolean = false;
+
   social: Social = history.state.social;
   ngOnInit() {
     //console.log(this.social)
   }
 
-  returnToDashboard() {
+  goBack() {
     // Navigate to dashboard
     this.router.navigate(['/dashboard']);
   }
+
+  openViewer() {
+    //// Navigate to IFrame
+    //this.router.navigate(['/social', this.social.name.toLowerCase(), 'view'], {
+    //  state: { social: this.social }
+    //});
+
+    // Navigate to webUrl
+    window.open(this.social.webUrl, '_blank');
+  }
+
 }
