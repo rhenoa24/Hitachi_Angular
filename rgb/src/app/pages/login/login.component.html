@@ -2,42 +2,46 @@
 <app-loading [loadingText]="loadingText"></app-loading>
 }
 @else{
-<h1>Login Page</h1>
 
 <form [formGroup]="loginForm">
 
-  <!-- STEP 1 -->
-  @if (step === 'username'){
-  <div>
-    <h3>Enter Username</h3>
+  <div class="login-container">
 
-    <div>
-      <input type="text" formControlName="userName" placeholder="Username" />
+    <div class="login-logo">
+      <img src="youtube.png" />
+      <img src="spotify.png" />
+      <img src="facebook.png" />
+    </div>
 
-      @if (showError('userName')) {
-      <span>{{ getErrorMessage('userName') }}</span>
-      }
+    <div class="login-form">
+      <div class="form-control">
+        <input type="text" formControlName="userName" placeholder="Username" />
+
+        @if (showError('userName')) {
+        <span class="error">{{ getErrorMessage('userName') }}</span>
+        }
+      </div>
+
+      <button type="button" (click)="submitUsername()" [disabled]="loginForm.get('userName')?.invalid">
+        Login
+      </button>
 
     </div>
 
-    <button type="button" (click)="submitUsername()" [disabled]="loginForm.get('userName')?.invalid">
-      Login
-    </button>
+    <!-- Popup -->
+    <div class="popup-modal"
+         [class.shown]="this.step == 'otp'">
+      <h3>Enter OTP</h3>
+
+      <input type="number" formControlName="otp" placeholder="OTP" />
+
+      <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
+        Enter
+      </button>
+    </div>
+
   </div>
-  }
-
-  <!-- STEP 2 -->
-  @if (step === 'otp'){
-  <div>
-    <h3>Enter OTP</h3>
-
-    <input type="number" formControlName="otp" placeholder="OTP" />
-
-    <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
-      Enter
-    </button>
-  </div>
-  }
 
 </form>
+
 }

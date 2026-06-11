@@ -1,0 +1,8 @@
+.popup-modal {
+    display: none;
+    position: absolute;
+}
+
+.popup-modal.show {
+    display: flex;
+}

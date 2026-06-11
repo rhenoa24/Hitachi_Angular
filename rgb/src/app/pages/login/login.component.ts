@@ -31,7 +31,6 @@ export class LoginComponent {
   protected isLoading: boolean = false;
   protected loadingText: string = '';
 
-  protected showOTP: boolean = false;
   protected loginFailed: boolean = false;
 
   // -----------------------------
@@ -101,7 +100,6 @@ export class LoginComponent {
     // Currently only simulating step progression
     this.step = 'otp';
     this.loginFailed = false;
-    this.showOTP = true;
   }
 
   // -----------------------------
@@ -125,7 +123,6 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify(res));
 
         this.isLoading = false;
-        this.showOTP = false;
 
         // Navigate to dashboard after success
         this.router.navigate(['/dashboard']);
@@ -135,7 +132,6 @@ export class LoginComponent {
       error: (err) => {
         this.isLoading = false;
 
-        this.showOTP = false;
         this.loginFailed = true;
 
         this.step = 'username';
