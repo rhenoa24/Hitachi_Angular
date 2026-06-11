@@ -19,7 +19,7 @@
       @for (social of socials; track social.name) {
       <img class="social-icon"
            [src]="social.iconUrl" [alt]="social.name + ' icon'"
-           (click)="openSocial(social.name)" />
+           (click)="openSocial(social)" />
       }
 
       <div class="others">

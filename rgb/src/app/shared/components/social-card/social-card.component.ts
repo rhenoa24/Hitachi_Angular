@@ -1,9 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Social } from '../../../models/social.model';
-import { ActivatedRoute } from '@angular/router';
-import { SocialService } from '../../../services/social.service';
-import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-social-card',
   imports: [],
@@ -11,24 +8,15 @@ import { Observable } from 'rxjs';
   styleUrl: './social-card.component.css',
 })
 export class SocialCardComponent {
+  router = inject(Router);
 
-  private route = inject(ActivatedRoute)
-  private socialService = inject(SocialService);
-
-  social?: Social;
-
+  social: Social = history.state.social;
   ngOnInit() {
-    const name = String(this.route.snapshot.paramMap.get('name'));
-
-    const data = this.socialService.getSocialByName(name);
-
-    if (data instanceof Observable) {
-      data.subscribe(res => {
-        this.social = res;
-      });
-    } else {
-      this.social = data;
-    }
+    console.log(this.social)
   }
 
+  returnToDashboard() {
+    // Navigate to dashboard
+    this.router.navigate(['/dashboard']);
+  }
 }
