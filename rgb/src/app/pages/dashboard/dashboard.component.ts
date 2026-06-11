@@ -6,12 +6,13 @@ import { AuthService } from '../../services/auth.service';
 import { Social } from '../../models/social.model';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { Subscription } from 'rxjs';
+import { SocialCardComponent } from '../../shared/components/social-card/social-card.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
-  imports: [LoadingComponent]
+  imports: [LoadingComponent, SocialCardComponent]
 })
 export class DashboardComponent implements OnInit {
 

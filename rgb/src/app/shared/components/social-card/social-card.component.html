@@ -1,0 +1,15 @@
+<div class="social-card">
+
+  <h4>{{ social.name }}</h4>
+
+  <p>{{ social.history }}</p>
+
+  <img [src]="social.iconUrl" [alt]="social.name + ' icon'" width="30" height="30" />
+
+  <img [src]="social.imgUrl" [alt]="social.name" width="120" />
+
+  <a [href]="social.webUrl" target="_blank">
+    Visit {{ social.name }}
+  </a>
+
+</div>

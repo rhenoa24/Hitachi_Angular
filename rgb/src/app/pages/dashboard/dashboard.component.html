@@ -5,45 +5,34 @@
 <div class="dashboard-container">
 
   <header class="dashboard-header">
-    <h2>Dashboard</h2>
-
-    <div class="user-info">
-      <p><strong>User:</strong> {{ userName }}</p>
-      <p><strong>ID:</strong> {{ userId }}</p>
-    </div>
     <img [src]="profilePicture" alt="Profile" width="40" height="40" />
+    <div class="user-info">
+      <div><strong>{{ userName }}</strong></div>
+      <span>{{ userId }}</span>
+    </div>
   </header>
 
   <main class="dashboard-content">
 
-    <h3>Socials</h3>
+    <div class="icon-grid">
 
-    <ul>
       @for (social of socials; track social.name) {
-      <li>
-        <div class="social-card">
-
-          <h4>{{ social.name }}</h4>
-
-          <p>{{ social.history }}</p>
-
-          <!-- Icon -->
-          <img [src]="social.iconUrl" [alt]="social.name + ' icon'" width="30" height="30" />
-
-          <!-- Main image -->
-          <img [src]="social.imgUrl" [alt]="social.name" width="120" />
-
-          <!-- Link -->
-          <p>
-            <a [href]="social.webUrl" target="_blank">
-              Visit {{ social.name }}
-            </a>
-          </p>
-
-        </div>
-      </li>
+      <img class="social-icon"
+           [src]="social.iconUrl" [alt]="social.name + ' icon'" />
       }
-    </ul>
+
+      <div class="others">
+        <svg width="94"
+             height="94"
+             viewBox="0 0 94 94"
+             xmlns="http://www.w3.org/2000/svg"
+             fill="currentColor">
+          <path d="M86 0C90.4183 0 94 3.58172 94 8V86C94 90.4183 90.4183 94 86 94H8C3.58172 94 0 90.4183 0 86V62H11V83H83V11H11V32H0V8C0 3.58172 3.58172 0 8 0H86Z" />
+          <path d="M69.5273 47.4561L69.2197 47.7637L69.5273 48.0713L44.0713 73.5273L37 66.4561L51.4561 52H0V42H49.9287L37 29.0713L44.0713 22L69.5273 47.4561Z" />
+        </svg>
+      </div>
+
+    </div>
 
   </main>
 
