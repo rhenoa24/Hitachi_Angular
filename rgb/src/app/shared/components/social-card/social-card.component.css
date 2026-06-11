@@ -1,6 +1,60 @@
 .card-header {
   display: flex;
-  padding: 30px;
+  padding-inline: 10px;
   gap: 10px;
   align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+  .card-header button svg {
+    width: 25px;
+    height: 25px;
+  }
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+  .card-content img {
+    width: 100%;
+    max-height: 540px;
+    object-fit: cover;
+  }
+
+  .card-content p {
+    padding-inline: 30px;
+  }
+
+  .card-content button {
+    padding: 18px;
+    font-size: 12pt;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    width: 50%;
+  }
+
+
+
+.YouTube .card-header,
+.YouTube .card-content button {
+  background-color: #F44336;
+  color: white;
+}
+
+.Spotify .card-header,
+.Spotify .card-content button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.Facebook .card-header,
+.Facebook .card-content button {
+  background-color: #2196F3;
+  color: white;
 }

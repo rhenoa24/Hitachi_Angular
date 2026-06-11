@@ -41,6 +41,9 @@ button {
   overflow: hidden;
   border: none;
   outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
   button i {
