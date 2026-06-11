@@ -9,6 +9,9 @@ import { environment } from '../environment/environment';
 })
 export class AuthService {
 
+  // -----------------------------
+  // Dependency Injection
+  // -----------------------------
   private http = inject(HttpClient);
 
   // -----------------------------
