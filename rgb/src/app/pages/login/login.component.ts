@@ -54,16 +54,14 @@ export class LoginComponent {
 
     this.authService.login(payload).subscribe({
       next: (res) => {
-
         localStorage.setItem('user', JSON.stringify(res));
+
+        this.authService.loading.set(false);
 
         this.router.navigate(['/dashboard']);
       },
-
       error: () => {
-
-        alert('Invalid login');
-        this.router.navigate(['/login']);
+        this.authService.loading.set(false);
       }
     });
   }

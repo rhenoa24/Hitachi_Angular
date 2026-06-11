@@ -1,1 +1,5 @@
-<router-outlet />
+@if (authService.loading()) {
+<app-loading></app-loading>
+} @else {
+<router-outlet></router-outlet>
+}
