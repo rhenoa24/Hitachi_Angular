@@ -1,0 +1,94 @@
+.others-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  gap: 16px;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 14px;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.slide {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-height: 200px;
+}
+
+  .slide img {
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+  }
+
+.arrow {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  .arrow:hover {
+    background: #f5f5f5;
+  }
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.page-content button.visit-btn {
+  padding: 18px;
+  font-size: 12pt;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  width: 50%;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+  .dot.active {
+    background: #FFC107;
+  }

@@ -94,6 +94,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  openOthers() {
+    // Navigate to dashboard
+    this.router.navigate(['/others']);
+  }
+
   showLogout() {
     this.showLogoutUI = !this.showLogoutUI;
   }

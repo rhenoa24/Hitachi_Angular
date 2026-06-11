@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { SocialCardComponent } from './shared/components/social-card/social-card.component';
 import { SocialViewerComponent } from './shared/components/social-viewer/social-viewer.component';
+import { OthersComponent } from './pages/dashboard/others/others.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,11 @@ export const routes: Routes = [
     path: 'social/:name/view',
     canActivate: [authGuard],
     component: SocialViewerComponent
+  },
+  {
+    path: 'others',
+    canActivate: [authGuard],
+    component: OthersComponent
   }
 
 ];
