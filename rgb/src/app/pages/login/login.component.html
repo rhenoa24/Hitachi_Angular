@@ -37,9 +37,13 @@
 
       <div class="content">
 
-        <div>
-          <div class="title">Enter OTP</div>
-          <input type="number" formControlName="otp" placeholder="OTP" />
+        <div class="modal-form">
+          <div class="title">Verify It's You</div>
+          <span>Please enter your 6 digit PIN</span>
+
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="6"
+                 formControlName="otp" (input)="onOtpInput($event)" />
+
         </div>
 
         <div class="button-group">

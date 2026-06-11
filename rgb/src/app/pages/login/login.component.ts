@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request.model';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
+  private loginSub?: Subscription;
 
   // -----------------------------
   // UI State (multi-step login flow)
@@ -117,7 +119,7 @@ export class LoginComponent {
     this.loadingText = "Logging In"
 
     // Trigger login request
-    this.authService.login(payload).subscribe({
+    this.loginSub = this.authService.login(payload).subscribe({
       next: (res) => {
         // Persist session data
         localStorage.setItem('user', JSON.stringify(res));
@@ -157,4 +159,27 @@ export class LoginComponent {
   resetFields() {
     this.loginForm.reset()
   }
+
+  onOtpInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    // keep digits only
+    let value = input.value.replace(/[^0-9]/g, '');
+
+    // limit to 6
+    if (value.length > 6) {
+      value = value.substring(0, 6);
+    }
+
+    // update form control without re-trigger loops
+    this.loginForm.get('otp')?.setValue(value, { emitEvent: false });
+
+    // also reflect trimmed value in UI
+    input.value = value;
+  }
+
+  ngOnDestroy() {
+    this.loginSub?.unsubscribe();
+  }
+
 }
