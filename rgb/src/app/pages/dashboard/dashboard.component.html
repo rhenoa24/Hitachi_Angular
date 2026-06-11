@@ -1,1 +1,37 @@
-<p>dashboard works!</p>
+@if (isLoading) {
+<div>Loading...</div>
+}
+@else if (socials.length === 0) {
+<div>No data available...</div>
+}
+@else {
+<div class="dashboard-container">
+
+  <header class="dashboard-header">
+    <h2>Dashboard</h2>
+
+    <button (click)="logout()">Logout</button>
+  </header>
+
+  <main class="dashboard-content">
+
+    <h3>Socials</h3>
+
+    <ul>
+      @for (social of socials; track social.id) {
+      <li>
+        <div class="social-card">
+          <p><strong>ID:</strong> {{ social.id }}</p>
+          <p><strong>Name:</strong> {{ social.name }}</p>
+          <p><strong>Platform:</strong> {{ social.icon }}</p>
+          <p><strong>Description:</strong> {{ social.description }}</p>
+          <p><strong>URL:</strong> {{ social.url }}</p>
+        </div>
+      </li>
+      }
+    </ul>
+
+  </main>
+
+</div>
+}

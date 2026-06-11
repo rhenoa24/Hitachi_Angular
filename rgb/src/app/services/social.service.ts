@@ -12,7 +12,13 @@ export class SocialService {
 
   getSocials() {
     return this.http.get<Social[]>(
-      `${environment.apiUrl}/socials`
+      `${environment.apiUrl}/socials`,
+      {
+        headers: {
+          CLIENT_ID: 'rgbexam'
+        }
+      }
     );
   }
+
 }

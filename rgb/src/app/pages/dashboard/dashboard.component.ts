@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { SocialService } from '../../services/social.service';
 import { Router } from '@angular/router';
 import { Social } from '../../models/social.model';
@@ -13,17 +13,23 @@ export class DashboardComponent {
 
   private socialService: SocialService = inject(SocialService)
   private router: Router = inject(Router)
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef)
 
   protected socials: Social[] = []
-  
-  ngOnInit() {
+  protected isLoading: boolean = true;
 
+  ngOnInit() {
     this.socialService.getSocials().subscribe({
       next: (data) => {
         this.socials = data;
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.isLoading = false;
+        this.cdr.detectChanges();
       }
     });
-
   }
 
   logout() {
