@@ -145,6 +145,15 @@ export class LoginComponent {
 
   }
 
+  closeOtp() {
+    const otp = this.loginForm.get('otp')
+    if (!otp) {
+      return
+    }
+    this.step = 'username'
+    otp.reset();
+  }
+
   resetFields() {
     this.loginForm.reset()
   }

@@ -34,13 +34,27 @@
     <!-- Popup -->
     <div class="popup-modal"
          [class.shown]="this.step == 'otp'">
-      <h3>Enter OTP</h3>
 
-      <input type="number" formControlName="otp" placeholder="OTP" />
+      <div class="content">
 
-      <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
-        Enter
-      </button>
+        <div>
+          <div class="title">Enter OTP</div>
+          <input type="number" formControlName="otp" placeholder="OTP" />
+        </div>
+
+        <div class="button-group">
+
+          <button type="button" (click)="submitOtp()" [disabled]="loginForm.get('otp')?.invalid">
+            Enter
+          </button>
+
+          <button type="button" (click)="closeOtp()">
+            Close
+          </button>
+
+        </div>
+      </div>
+
     </div>
 
   </div>
