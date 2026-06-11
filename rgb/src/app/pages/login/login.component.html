@@ -41,8 +41,7 @@
           <div class="title">Verify It's You</div>
           <span>Please enter your 6 digit PIN</span>
 
-          <input class="otp-input" type="text" inputmode="numeric" maxlength="6"
-                 formControlName="otp" (input)="onOtpInput($event)" />
+          <app-otp-input [control]="loginForm.controls.otp" />
 
         </div>
 

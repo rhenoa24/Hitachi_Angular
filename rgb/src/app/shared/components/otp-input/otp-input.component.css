@@ -1,0 +1,24 @@
+.otp-wrapper {
+  display: flex;
+  gap: 8px;
+  cursor: text;
+  position: relative;
+}
+
+.otp-hidden-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.otp-digit {
+  width: 44px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}

@@ -1,0 +1,18 @@
+<div class="otp-wrapper" (click)="hiddenInput.focus()">
+  <!-- Hidden input holds the real value -->
+  <input #hiddenInput
+         class="otp-hidden-input"
+         [formControl]="control"
+         inputmode="numeric"
+         maxlength="6"
+         autocomplete="one-time-code"
+         (input)="onInput($event)" />
+
+  <!-- Visual digit boxes -->
+  <span *ngFor="let _ of digits; let i = index"
+        class="otp-digit"
+        [class.otp-digit--filled]="value[i]"
+        [class.otp-digit--active]="hiddenInput === doc.activeElement && value.length === i">
+    {{ value[i] ?? '-' }}
+  </span>
+</div>

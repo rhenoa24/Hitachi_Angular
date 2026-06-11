@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request.model';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { Subscription } from 'rxjs';
+import { OtpInputComponent } from '../../shared/components/otp-input/otp-input.component';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './login.component.css',
   imports: [
     ReactiveFormsModule,
-    LoadingComponent
+    LoadingComponent,
+    OtpInputComponent
   ],
 })
 export class LoginComponent {
