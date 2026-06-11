@@ -12,7 +12,7 @@ export class SocialCardComponent {
 
   social: Social = history.state.social;
   ngOnInit() {
-    console.log(this.social)
+    //console.log(this.social)
   }
 
   returnToDashboard() {
