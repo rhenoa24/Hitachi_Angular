@@ -11,6 +11,10 @@ html, body {
   height: 100%;
 }
 
+html {
+    overflow: hidden;
+}
+
 
 body {
   margin: 0;
@@ -20,6 +24,7 @@ body {
   line-height: initial;
   background-color: white;
   color: black;
+  overflow: auto;
 }
 
 * {
