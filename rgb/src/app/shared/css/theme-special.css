@@ -21,18 +21,23 @@ body.special-theme {
 .special-theme {
 }
 
+  .special-theme .dashboard-container .icon-grid .YouTube,
+  .special-theme .yt {
+    background-color: white;
+  }
+
+  .special-theme .social-card.YouTube .btn:hover,
   .special-theme .dashboard-container .icon-grid .YouTube {
     box-shadow: 0 -2px 10px #ea412c;
-    background-color: white;
     transition: all 0.25s ease;
   }
 
     .special-theme .dashboard-container .icon-grid .YouTube:hover,
     .special-theme .yt {
       box-shadow: 0 -2px 25px #ea412c;
-      background-color: white;
     }
 
+  .special-theme .social-card.Facebook .btn:hover,
   .special-theme .dashboard-container .icon-grid .Facebook {
     box-shadow: 0 -2px 10px #17a7fd;
     transition: all 0.25s ease;
@@ -43,6 +48,7 @@ body.special-theme {
       box-shadow: 0 -2px 25px #17a7fd;
     }
 
+  .special-theme .social-card.Spotify .btn:hover,
   .special-theme .dashboard-container .icon-grid .Spotify {
     box-shadow: 0 -2px 10px #08bc4b;
     transition: all 0.25s ease;
@@ -53,20 +59,16 @@ body.special-theme {
       box-shadow: 0 -2px 25px #08bc4b;
     }
 
+  .special-theme .others-container .btn:hover,
   .special-theme .dashboard-container .icon-grid .others {
-    box-shadow: 0 -2px 10px #FFC107;
+    box-shadow: 0 -2px 10px #FFA000;
     transition: all 0.25s ease;
   }
 
     .special-theme .dashboard-container .icon-grid .others:hover,
     .special-theme .ot {
-      box-shadow: 0 -2px 25px #FFC107;
+      box-shadow: 0 -2px 25px #FFA000;
     }
-
-  .special-theme .confirm-btn:hover:not(:disabled) {
-    background-color: #7ABD70 !important;
-    box-shadow: 0 -2px 25px #138200;
-  }
 
   .special-theme .popup-modal .content,
   .special-theme .others-container .slide {
@@ -119,5 +121,46 @@ body.special-theme {
 }
 
 .special-theme .others-container {
-    background: none !important;
+  background: none !important;
+}
+
+.special-theme .confirm-btn:hover:not(:disabled) {
+  background-color: #7ABD70 !important;
+  box-shadow: 0 -2px 25px #138200;
+}
+
+.special-theme .social-card.YouTube .btn:hover {
+  background-color: #F6685E !important;
+}
+
+.special-theme .social-card.Spotify .btn:hover {
+  background-color: #66BB6A !important;
+}
+
+.special-theme .social-card.Facebook .btn:hover {
+  background-color: #42A5F5 !important;
+}
+
+  .special-theme .icon-grid .others,
+  .special-theme .Others .page-header,
+  .special-theme .Others .page-content button {
+    background-color: #FFA000 !important
+  }
+
+.special-theme .others-container .btn:hover {
+  background-color: #FFC107 !important;
+}
+
+.special-theme .popup-modal.bottom .content {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.special-theme .popup-modal.bottom .content .button-group button {
+  background-color: transparent !important;
+  border: 1px inset #ffffff17 !important;
+}
+
+.special-theme .confirm-btn:disabled {
+  color: white !important;
 }
