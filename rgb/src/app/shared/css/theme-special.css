@@ -35,7 +35,7 @@ body.special-theme {
   }
 
   .special-theme .ot {
-    box-shadow: 0 -2px 25px #14a4fa;
+    box-shadow: 0 -2px 25px #FFC107;
   }
 
   .special-theme .confirm-btn:hover:not(:disabled) {
@@ -47,3 +47,47 @@ body.special-theme {
     background-color: #191d30b0;
     backdrop-filter: blur(25px);
   }
+
+    .special-theme .popup-modal .content .button-group,
+    .special-theme .popup-modal .content .button-group button {
+      border-color: #ffffff17 !important;
+    }
+
+
+      .special-theme .popup-modal .content .button-group button:hover:not(:disabled) {
+        background-color: #ffffff17;
+      }
+
+  .special-theme .loading-wrapper .loader {
+    margin-bottom: 20px;
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    border-radius: 50%;
+    background: linear-gradient( 0deg, rgb(255 255 255 / 50%) 30%, #0000 0 70%, rgb(255 255 255 / 100%) 0 ) 50% / 8% 100%, linear-gradient( 90deg, rgb(255 255 255 / 25%) 30%, #0000 0 70%, rgb(255 255 255 / 75%) 0 ) 50% / 100% 8%;
+    background-repeat: no-repeat;
+    animation: l23 1s infinite steps(12);
+    opacity: .4;
+  }
+
+
+    .special-theme .loading-wrapper .loader::before,
+    .special-theme .loading-wrapper .loader::after {
+      content: "";
+      grid-area: 1/1;
+      border-radius: 50%;
+      background: inherit;
+      opacity: 0.915;
+      transform: rotate(30deg);
+    }
+
+    .special-theme .loading-wrapper .loader::after {
+      opacity: 0.83;
+      transform: rotate(60deg);
+    }
+
+@keyframes l23 {
+  100% {
+    transform: rotate(1turn);
+  }
+}

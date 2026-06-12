@@ -45,7 +45,7 @@
         }
 
         .popup-modal .content .button-group button:first-child {
-          border: none;
+          border: none !important;
         }
 
         .popup-modal .content .button-group button:disabled {
