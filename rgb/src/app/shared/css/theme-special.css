@@ -21,29 +21,55 @@ body.special-theme {
 .special-theme {
 }
 
-  .special-theme .yt {
-    box-shadow: 0 -2px 25px #ea412c;
+  .special-theme .dashboard-container .icon-grid .YouTube {
+    box-shadow: 0 -2px 10px #ea412c;
     background-color: white;
+    transition: all 0.25s ease;
   }
 
-  .special-theme .fb {
-    box-shadow: 0 -2px 25px #17a7fd;
+    .special-theme .dashboard-container .icon-grid .YouTube:hover,
+    .special-theme .yt {
+      box-shadow: 0 -2px 25px #ea412c;
+      background-color: white;
+    }
+
+  .special-theme .dashboard-container .icon-grid .Facebook {
+    box-shadow: 0 -2px 10px #17a7fd;
+    transition: all 0.25s ease;
   }
 
-  .special-theme .sp {
-    box-shadow: 0 -2px 25px #08bc4b;
+    .special-theme .dashboard-container .icon-grid .Facebook:hover,
+    .special-theme .fb {
+      box-shadow: 0 -2px 25px #17a7fd;
+    }
+
+  .special-theme .dashboard-container .icon-grid .Spotify {
+    box-shadow: 0 -2px 10px #08bc4b;
+    transition: all 0.25s ease;
   }
 
-  .special-theme .ot {
-    box-shadow: 0 -2px 25px #FFC107;
+    .special-theme .dashboard-container .icon-grid .Spotify:hover,
+    .special-theme .sp {
+      box-shadow: 0 -2px 25px #08bc4b;
+    }
+
+  .special-theme .dashboard-container .icon-grid .others {
+    box-shadow: 0 -2px 10px #FFC107;
+    transition: all 0.25s ease;
   }
+
+    .special-theme .dashboard-container .icon-grid .others:hover,
+    .special-theme .ot {
+      box-shadow: 0 -2px 25px #FFC107;
+    }
 
   .special-theme .confirm-btn:hover:not(:disabled) {
     background-color: #7ABD70 !important;
     box-shadow: 0 -2px 25px #138200;
   }
 
-  .special-theme .popup-modal .content {
+  .special-theme .popup-modal .content,
+  .special-theme .others-container .slide {
     background-color: #191d30b0;
     backdrop-filter: blur(25px);
   }
@@ -90,4 +116,8 @@ body.special-theme {
   100% {
     transform: rotate(1turn);
   }
+}
+
+.special-theme .others-container {
+    background: none !important;
 }
