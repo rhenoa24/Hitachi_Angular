@@ -157,7 +157,7 @@ body.special-theme {
 }
 
 .special-theme .popup-modal.bottom .content .button-group button {
-  background-color: transparent !important;
+  background-color: transparent;
   border: 1px inset #ffffff17 !important;
 }
 
