@@ -1,0 +1,49 @@
+body::before {
+  content: '';
+  opacity: 0;
+}
+
+body.special-theme::before {
+  content: '';
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0b0e16, #0c1325);
+  opacity: 1;
+  position: absolute;
+  z-index: -1;
+}
+
+body.special-theme {
+  color: white
+}
+
+.special-theme {
+}
+
+  .special-theme .yt {
+    box-shadow: 0 -2px 25px #ea412c;
+    background-color: white;
+  }
+
+  .special-theme .fb {
+    box-shadow: 0 -2px 25px #17a7fd;
+  }
+
+  .special-theme .sp {
+    box-shadow: 0 -2px 25px #08bc4b;
+  }
+
+  .special-theme .ot {
+    box-shadow: 0 -2px 25px #14a4fa;
+  }
+
+  .special-theme .confirm-btn:hover:not(:disabled) {
+    background-color: #7ABD70 !important;
+    box-shadow: 0 -2px 25px #138200;
+  }
+
+  .special-theme .popup-modal .content {
+    background-color: #191d30b0;
+    backdrop-filter: blur(25px);
+  }
